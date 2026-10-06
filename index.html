@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURAX MONTAÑISMO GT | Tienda Oficial & Expediciones</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #0A0A0A !important;
+            color: #FFFFFF !important;
+            line-height: 1.6;
+            padding-top: 70px;
+        }
+
+        /* Header Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #121212;
+            border-bottom: 2px solid #5CE1E6;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .logo-badge {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .logo-badge span {
+            color: #5CE1E6;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+
+        nav a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        nav a:hover {
+            color: #5CE1E6;
+        }
+
+        .cart-trigger {
+            background-color: #5CE1E6;
+            color: #000000;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .cart-count {
+            background-color: #FF4D4D;
+            color: #FFFFFF;
+            padding: 2px 6px;
+            border-radius: 50%;
+            font-size: 0.8rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: #121212;
+            border-bottom: 1px solid #333333;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #FFFFFF;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 span {
+            color: #5CE1E6;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #5CE1E6;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .hero-slogan {
+            font-size: 1.2rem;
+            color: #B0B0B0;
+            font-style: italic;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #5CE1E6;
+            color: #000000;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-ws {
+            background-color: #25D366;
+            color: #FFFFFF;
+        }
+
+        /* Secciones */
+        section {
+            padding: 50px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #5CE1E6;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #5CE1E6;
+            padding-bottom: 10px;
+        }
+
+        /* Grid de Productos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: #1A1A1A;
+            border: 1px solid #333333;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            color: #FFFFFF;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            color: #5CE1E6;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* Estrategia & Objetivos */
+        .card-box {
+            background-color: #1A1A1A;
+            border: 1px solid #5CE1E6;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .card-box h3 {
+            color: #5CE1E6;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .obj-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .obj-item {
+            background-color: #121212;
+            padding: 15px;
+            border-left: 3px solid #5CE1E6;
+            border-radius: 4px;
+        }
+
+        /* Carrito */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 350px;
+            height: 100%;
+            background-color: #121212;
+            border-left: 2px solid #5CE1E6;
+            z-index: 2000;
+            padding: 20px;
+            transition: right 0.3s ease;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #333333;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #000000;
+            color: #888888;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 10px; }
+            body { padding-top: 110px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo-badge" onclick="window.scrollTo(0,0)">AURA<span>X</span> GT</div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#tienda">Tienda</a></li>
+                <li><a href="#estrategia">Estrategia</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+        <div class="cart-trigger" onclick="toggleCart()">
+            🛒 Carrito (<span id="cartCount">0</span>)
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <h1>AURAX <span>MONTAÑISMO GT</span></h1>
+        <div class="hero-subtitle">"Más que caminar, vivir la montaña"</div>
+        <div class="hero-slogan">"Conquistando a Guate desde lo alto."</div>
+        
+        <div>
+            <a href="#tienda" class="btn">Ver Equipo Técnico</a>
+            <a href="https://wa.me/50254342015?text=Hola%20AuraX%20Monta%C3%B1ismo!" target="_blank" class="btn btn-ws">
+                📱 WhatsApp Directo (5434-2015)
+            </a>
+        </div>
+    </section>
+
+    <!-- TIENDA SECTION -->
+    <section id="tienda">
+        <h2 class="section-title">Tienda de Equipo Técnico</h2>
+        <div class="products-grid" id="productsGrid"></div>
+    </section>
+
+    <!-- ESTRATEGIA Y OBJETIVOS -->
+    <section id="estrategia">
+        <h2 class="section-title">Pilares Estratégicos</h2>
+        
+        <div class="card-box">
+            <h3>🧭 Misión</h3>
+            <p>Brindar experiencias de montañismo, senderismo y ascenso de volcanes que inspiren a las personas a conectar con la naturaleza, superar sus propios límites y crear vínculos a través de la aventura, promoviendo siempre la seguridad, el respeto por el medio ambiente y el compañerismo en cada expedición.[cite: 1]</p>
+        </div>
+
+        <div class="card-box">
+            <h3>🏔️ Visión</h3>
+            <p>Ser la comunidad líder de montañismo y aventura en Guatemala, reconocida por ofrecer experiencias auténticas, seguras y memorables, promoviendo una cultura de exploración responsable y convirtiéndose en un referente para quienes buscan descubrir nuevas cimas y vivir la montaña con pasión.[cite: 1]</p>
+        </div>
+
+        <div class="card-box">
+            <h3>🎯 Objetivo General</h3>
+            <p>Consolidar a Aurax Montañismo GT como una comunidad líder en montañismo y senderismo, ofreciendo experiencias seguras, memorables y responsables que fortalezcan la conexión entre las personas y la naturaleza.[cite: 1]</p>
+
+            <h4 style="color: #5CE1E6; margin-top: 20px; margin-bottom: 10px;">Objetivos Específicos:</h4>
+            <div class="obj-list">
+                <div class="obj-item">1. Organizar expediciones con altos estándares de seguridad y planificación.[cite: 1]</div>
+                <div class="obj-item">2. Fomentar el respeto por el medio ambiente y el turismo responsable.[cite: 1]</div>
+                <div class="obj-item">3. Promover el compañerismo y la convivencia en la comunidad.[cite: 1]</div>
+                <div class="obj-item">4. Desarrollar una marca reconocida por su calidad y profesionalismo en Guatemala.[cite: 1]</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+        <h2 class="section-title">Contacto Directo</h2>
+        <div style="text-align: center;">
+            <p style="font-size: 1.3rem; margin-bottom: 15px;">Atención al cliente y consultas directas:</p>
+            <a href="https://wa.me/50254342015" target="_blank" class="btn btn-ws" style="font-size: 1.2rem;">
+                💬 Contactar por WhatsApp al 5434-2015
+            </a>
+            <p style="margin-top: 20px; color: #B0B0B0;">Instagram: @aurax_gt | TikTok: @aurax546[cite: 2]</p>
+        </div>
+    </section>
+
+    <!-- CARRITO SIDEBAR -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <h3 style="color: #5CE1E6; margin-bottom: 20px;">🛒 Tu Carrito</h3>
+        <div id="cartItems"></div>
+        <div style="margin-top: 20px; border-top: 1px solid #333; padding-top: 15px;">
+            <h4 style="margin-bottom: 15px;">Total: Q<span id="cartTotal">0.00</span></h4>
+            <button class="btn btn-ws" style="width: 100%;" onclick="checkoutWhatsApp()">
+                Confirmar Pedido por WhatsApp
+            </button>
+            <button class="btn" style="width: 100%; background-color: #FF4D4D; color: #FFF; margin-top: 10px;" onclick="toggleCart()">
+                Cerrar
+            </button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 AURAX MONTAÑISMO GT | Conquistando a Guate desde lo alto.[cite: 1]</p>
+    </footer>
+
+    <script>
+        const products = [
+            { id: 1, name: "Botas Boreal Rigid GTX", price: 1450.00, emoji: "🥾" },
+            { id: 2, name: "Mochila Osprey 75L", price: 1850.00, emoji: "🎒" },
+            { id: 3, name: "Carpa MSR 4 Estaciones", price: 2200.00, emoji: "⛺" },
+            { id: 4, name: "Sleeping Bag -15°C", price: 1150.00, emoji: "🛌" },
+            { id: 5, name: "Piolet Black Diamond", price: 780.00, emoji: "⛏️" },
+            { id: 6, name: "Crampones 12 Puntas", price: 920.00, emoji: "⚙️" }
+        ];
+
+        let cart = [];
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+            products.forEach(p => {
+                grid.innerHTML += `
+                    <div class="product-card">
+                        <div class="product-icon">${p.emoji}</div>
+                        <div class="product-title">${p.name}</div>
+                        <div class="product-price">Q${p.price.toFixed(2)}</div>
+                        <button class="btn" onclick="addToCart(${p.id})">+ Agregar</button>
+                    </div>
+                `;
+            });
+        }
+
+        function addToCart(id) {
+            const p = products.find(item => item.id === id);
+            cart.push(p);
+            updateCart();
+            toggleCart(true);
+        }
+
+        function updateCart() {
+            document.getElementById('cartCount').innerText = cart.length;
+            const container = document.getElementById('cartItems');
+            let total = 0;
+            container.innerHTML = '';
+            
+            if(cart.length === 0) {
+                container.innerHTML = '<p style="color:#888;">El carrito está vacío.</p>';
+            } else {
+                cart.forEach((item, index) => {
+                    total += item.price;
+                    container.innerHTML += `
+                        <div class="cart-item">
+                            <div>${item.emoji} ${item.name}</div>
+                            <div><b>Q${item.price.toFixed(2)}</b></div>
+                        </div>
+                    `;
+                });
+            }
+            document.getElementById('cartTotal').innerText = total.toFixed(2);
+        }
+
+        function toggleCart(forceOpen = false) {
+            const sidebar = document.getElementById('cartSidebar');
+            if(forceOpen || !sidebar.classList.contains('active')) {
+                sidebar.classList.add('active');
+            } else {
+                sidebar.classList.remove('active');
+            }
+        }
+
+        function checkoutWhatsApp() {
+            if(cart.length === 0) return alert("Agrega productos al carrito.");
+            let msg = "Hola AuraX, quiero pedir:%0A";
+            let total = 0;
+            cart.forEach(item => {
+                msg += `- ${item.name} (Q${item.price.toFixed(2)})%0A`;
+                total += item.price;
+            });
+            msg += `%0ATotal: Q${total.toFixed(2)}`;
+            window.open(`https://wa.me/50254342015?text=${msg}`, '_blank');
+        }
+
+        renderProducts();
+    </script>
+</body>
+</html>
